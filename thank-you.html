@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>მადლობა | SkillSet Academy</title>
+    <link rel="icon" type="image/png" href="skillset.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            background: linear-gradient(160deg, #e0f2fe 0%, #f0f9ff 60%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        nav {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 24px;
+        }
+        nav img { height: 56px; object-fit: contain; }
+
+        .page {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 48px;
+            text-align: center;
+            max-width: 540px;
+            width: 100%;
+            box-shadow: 0 8px 40px rgba(0,0,0,.10);
+        }
+        .check-circle {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: #dcfce7;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 36px;
+        }
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #0f2942;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        p {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 28px 0;
+        }
+        .perks {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 36px;
+        }
+        .perks li {
+            font-size: 15px;
+            color: #475569;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .perks li:last-child { border-bottom: none; }
+        .perk-icon {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: #dbeafe;
+            color: #0ea5e9;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .btn-back {
+            display: inline-block;
+            background: #0ea5e9;
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: background .2s;
+        }
+        .btn-back:hover { background: #0284c7; }
+
+        footer {
+            background: #081929;
+            padding: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #475569;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <img src="skillset.png" alt="SkillSet Academy">
+</nav>
+
+<div class="page">
+    <div class="card">
+        <div class="check-circle">✓</div>
+        <h1>განაცხადი წარმატებით გაიგზავნა!</h1>
+        <p>მადლობა რეგისტრაციისთვის. ჩვენი გუნდი მალე დაგიკავშირდება კურსის დეტალების გასარჩევად.</p>
+        <hr class="divider">
+        <ul class="perks">
+            <li><span class="perk-icon">✓</span> უფასო კონსულტაცია კურსის შესახებ</li>
+            <li><span class="perk-icon">✓</span> სპეციალური ფასი ადრეული რეგისტრაციისთვის</li>
+            <li><span class="perk-icon">✓</span> გადახდის მოქნილი პირობები</li>
+        </ul>
+        <a href="index.html" class="btn-back">მთავარ გვერდზე დაბრუნება</a>
+    </div>
+</div>
+
+<footer>
+    © 2026 SkillSet Academy. ყველა უფლება დაცულია.
+</footer>
+
+</body>
+</html>

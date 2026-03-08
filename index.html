@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>გაყიდვების ტრენინგი | SkillSet Academy</title>
+    <link rel="icon" type="image/png" href="skillset.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --navy: #0f2942;
+            --navy-deep: #081929;
+            --bg-light: #f0f9ff;
+            --text-dark: #0f172a;
+            --text-mid: #475569;
+            --text-light: #94a3b8;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── NAV ── */
+        nav {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 20px; font-weight: 800; color: var(--navy); }
+        .logo span { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: background .2s;
+        }
+        .nav-cta:hover { background: var(--primary-dark); }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(160deg, #e0f2fe 0%, #f0f9ff 60%, #dbeafe 100%);
+            padding: 90px 0 70px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            border: 1px solid #bae6fd;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero p {
+            font-size: 17px;
+            color: var(--text-mid);
+            max-width: 560px;
+            margin: 0 auto 38px;
+        }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 15px 34px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: background .2s, transform .1s;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 13px 34px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all .2s;
+        }
+        .btn-outline:hover { background: var(--primary); color: white; }
+
+        /* ── STATS ── */
+        .stats { background: white; padding: 50px 0; }
+        .stats-box {
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,.06);
+        }
+        .stat {
+            flex: 1;
+            text-align: center;
+            padding: 36px 24px;
+            border-right: 1px solid var(--border);
+        }
+        .stat:last-child { border-right: none; }
+        .stat-num {
+            display: block;
+            font-size: 46px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-lbl { font-size: 14px; font-weight: 500; color: var(--text-mid); }
+
+        /* ── PROBLEMS ── */
+        .problems { background: #f8fafc; padding: 80px 0; }
+        .section-eyebrow {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+        .section-sub {
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-mid);
+            margin-bottom: 50px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 34px;
+            box-shadow: 0 2px 14px rgba(0,0,0,.06);
+        }
+        .card-icon {
+            width: 54px; height: 54px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+        .icon-blue  { background: #dbeafe; }
+        .icon-pink  { background: #fce7f3; }
+        .icon-green { background: #dcfce7; }
+        .card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+        .card p  { font-size: 14px; color: var(--text-mid); line-height: 1.75; }
+
+        /* ── TRAINER ── */
+        .trainer { background: var(--bg-light); padding: 80px 0; }
+        .trainer-inner {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+        .photo-wrap { position: relative; }
+        .trainer-img {
+            width: 100%;
+            border-radius: 22px;
+            object-fit: cover;
+            display: block;
+            max-height: 520px;
+        }
+        .rating-badge {
+            position: absolute;
+            bottom: 20px; right: -24px;
+            background: white;
+            border-radius: 16px;
+            padding: 16px 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.14);
+            text-align: center;
+            min-width: 130px;
+        }
+        .stars { color: #f59e0b; font-size: 20px; margin-bottom: 4px; }
+        .rating-num { font-size: 24px; font-weight: 800; color: var(--navy); }
+        .rating-lbl { font-size: 12px; color: var(--text-mid); }
+        .trainer-tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .trainer-content h2 { font-size: 34px; font-weight: 800; color: var(--navy); margin-bottom: 22px; }
+        .trainer-content p { font-size: 15px; color: var(--text-mid); line-height: 1.85; margin-bottom: 16px; }
+
+        /* ── MODULES ── */
+        .modules { background: white; padding: 80px 0; }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .mod-card { border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.09); }
+        .mod-head { padding: 26px 30px; color: white; }
+        .mod-num  { font-size: 12px; font-weight: 700; opacity: .8; margin-bottom: 6px; }
+        .mod-head h3 { font-size: 18px; font-weight: 700; }
+        .grad-1 { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+        .grad-2 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .grad-3 { background: linear-gradient(135deg, #10b981, #059669); }
+        .mod-body { background: white; padding: 26px 30px; }
+        .mod-body > p {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+        .mod-body ul { list-style: none; }
+        .mod-body ul li {
+            font-size: 14px;
+            color: var(--text-mid);
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .mod-body ul li:last-child { border-bottom: none; }
+        .mod-body ul li::before { content: '✓'; color: var(--primary); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+        /* ── WHY ── */
+        .why { background: #f8fafc; padding: 80px 0; }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .why-card { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+        .why-icon {
+            width: 50px; height: 50px;
+            border-radius: 12px;
+            background: #e0f2fe;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .why-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+        .why-card p  { font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+
+        /* ── CTA / FORM ── */
+        .cta { background: var(--navy); padding: 90px 0; }
+        .cta-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+        .cta-left h2 {
+            font-size: 34px;
+            font-weight: 800;
+            color: white;
+            line-height: 1.3;
+            margin-bottom: 32px;
+        }
+        .cta-perks { list-style: none; }
+        .cta-perks li {
+            color: #94a3b8;
+            font-size: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .cta-perks li:last-child { border-bottom: none; }
+        .check {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: rgba(14,165,233,.2);
+            color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .cta-form { background: white; border-radius: 22px; padding: 38px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 7px; }
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Noto Sans Georgian', sans-serif;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color .2s;
+        }
+        .form-group input:focus { border-color: var(--primary); }
+        .form-group input::placeholder { color: #cbd5e1; }
+        .form-submit {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Noto Sans Georgian', sans-serif;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: background .2s;
+        }
+        .form-submit:hover { background: var(--primary-dark); }
+        .form-note { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 14px; }
+
+        /* ── FOOTER ── */
+        footer { background: var(--navy-deep); padding: 48px 0 28px; }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-bottom: 36px;
+        }
+        .footer-logo { font-size: 18px; font-weight: 800; color: white; margin-bottom: 6px; }
+        .footer-logo span { color: var(--primary); }
+        .footer-tag { font-size: 13px; color: #64748b; }
+        .footer-contacts { display: flex; flex-direction: column; gap: 12px; }
+        .footer-link { font-size: 14px; color: #94a3b8; display: flex; align-items: center; gap: 10px; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.06);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #475569;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 30px; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .trainer-inner { grid-template-columns: 1fr; }
+            .rating-badge { right: 0; }
+            .modules-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .cta-inner { grid-template-columns: 1fr; }
+            .stats-box { flex-direction: column; }
+            .stat { border-right: none; border-bottom: 1px solid var(--border); }
+            .stat:last-child { border-bottom: none; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .section-title { font-size: 24px; }
+            .why-grid { grid-template-columns: 1fr; }
+            .footer-top { flex-direction: column; }
+            .cta-left h2 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="container">
+        <div class="nav-inner">
+            <img src="skillset.png" alt="SkillSet Academy" style="height:56px;object-fit:contain;">
+            <a href="#register" class="nav-cta">დარეგისტრირდი</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">SkillSet Academy — პროფესიული ზრდის აკადემია</div>
+        <h1>გაყიდვების მენეჯმენტი და გუნდის მართვა</h1>
+        <p>ისწავლე როგორ გაყიდო მეტი, მართო გუნდი ეფექტურად და შექმნა შედეგზე ორიენტირებული სისტემა</p>
+        <div class="hero-btns">
+            <a href="#register" class="btn-primary">დარეგისტრირდი ახლა</a>
+            <a href="#modules"  class="btn-outline">ნახე სილაბუსი</a>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-box">
+            <div class="stat">
+                <span class="stat-num">12</span>
+                <div class="stat-lbl">ფიზიკური შეხვედრა</div>
+            </div>
+            <div class="stat">
+                <span class="stat-num">1.5</span>
+                <div class="stat-lbl">თვე</div>
+            </div>
+            <div class="stat">
+                <span class="stat-num">24</span>
+                <div class="stat-lbl">საათი ჯამში</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="problems">
+    <div class="container">
+        <div class="section-eyebrow">ნაცნობი სიტუაციაა?</div>
+        <h2 class="section-title">ნაცნობი სიტუაციაა?</h2>
+        <p class="section-sub">თუ ამ პრობლემებს აწყდები, ჩვენი კურსი შენთვისაა</p>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon icon-blue">📚</div>
+                <h3>არ იცი საიდან დაიწყო</h3>
+                <p>გსურს კარიერული განვითარება გაყიდვების ან მენეჯმენტის მიმართულებით, მაგრამ არ იცი, საიდან დაიწყო.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon icon-pink">💬</div>
+                <h3>გიჭირს შედეგის დადება</h3>
+                <p>შეხვედრებზე და ზარებზე გიჭირს კლიენტის ნდობის მოპოვება და ეფექტური მოლაპარაკება.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon icon-green">⚙️</div>
+                <h3>ვერ მართავ ეფექტურად</h3>
+                <p>ვერ აწყობ გაყიდვების პროცესს და გუნდურ დავალებებს ისე, რომ კმაყოფილი იყოს კლიენტიც და შენი გუნდის წევრებიც.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRAINER -->
+<section class="trainer">
+    <div class="container">
+        <div class="trainer-inner">
+            <div class="photo-wrap">
+                <img src="ნანუკა თეზელაშვილი.jfif" alt="ნანუკა თეზელაშვილი" class="trainer-img">
+                <div class="rating-badge">
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-num">5.0</div>
+                    <div class="rating-lbl">მონაწილეთა შეფასება</div>
+                </div>
+            </div>
+            <div class="trainer-content">
+                <span class="trainer-tag">შენი ტრენერი</span>
+                <h2>ნანუკა თეზელაშვილი</h2>
+                <p>მე ვარ ნანუკა თეზელაშვილი — გაყიდვების სფეროს პრაქტიკოსი, ტრენერი და მენტორი 13 წლიანი გამოცდილებით. ჩემი კარიერა არ დაწყებულა ტრენინგებით — ის დაიწყო რეალური გაყიდვებით და გავიარე სრული გზა გაყიდვების მენეჯერიდან, უფროსი გაყიდვების მენეჯერისა და გენერალური მენეჯერის პოზიციებამდე.</p>
+                <p>უკვე 10 წელზე მეტია ვატარებ გაყიდვების ტრენინგებს და ვმუშაობ მენტორობის მიმართულებით.</p>
+                <p>ახლახანს დავაფუძნე Skillset Academy — პროფესიული ზრდის აკადემია, სადაც ვატარებ გაყიდვების მიმართულებით პრემიუმ ტრენინგებს.</p>
+                <p>ჩემი მიზანია, თითოეულმა მონაწილემ ტრენინგის დასრულების შემდეგ მიიღოს არა უბრალოდ თეორიული ცოდნა, არამედ კონკრეტული ინსტრუმენტები, რაც პირდაპირ აისახება გაყიდვებისა და შემოსავლების ზრდაზე.</p>
+                <p>თუ მზად ხარ გაყიდვები აქციო შენს ძლიერ მხარედ და არა მუდმივ პრობლემად — ჩემს კურსზე აუცილებლად დარეგისტრირდი!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules" id="modules">
+    <div class="container">
+        <div class="section-eyebrow">სრული პროგრამა</div>
+        <h2 class="section-title">რას ისწავლი კურსზე?</h2>
+        <p class="section-sub">11 მოდული დაყოფილია 3 ლოგიკურ ბლოკად სრულყოფილი სწავლებისთვის</p>
+        <div class="modules-grid">
+            <div class="mod-card">
+                <div class="mod-head grad-1">
+                    <div class="mod-num">მოდული 1</div>
+                    <h3>გაყიდვების საფუძვლები</h3>
+                </div>
+                <div class="mod-body">
+                    <p>რას ისწავლი:</p>
+                    <ul>
+                        <li>გაყიდვების ფსიქოლოგია</li>
+                        <li>ნდობის მოპოვება და მოლაპარაკების ხელოვნება</li>
+                        <li>ბაზრის კვლევა და მიზნობრივი აუდიტორია</li>
+                        <li>პროდუქტის ფასი და ღირებულება</li>
+                        <li>კლიენტის ტიპები და ეფექტური კომუნიკაცია</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mod-card">
+                <div class="mod-head grad-2">
+                    <div class="mod-num">მოდული 2</div>
+                    <h3>გაყიდვების სტრატეგია და არხები</h3>
+                </div>
+                <div class="mod-body">
+                    <p>რას ისწავლი:</p>
+                    <ul>
+                        <li>გაყიდვების სტრატეგიის შემუშავება</li>
+                        <li>B2B და B2C გაყიდვები</li>
+                        <li>სატელეფონო, ონლაინ და პირისპირ გაყიდვები</li>
+                        <li>KPI და SMART მოდელის შექმნა და გამოყენება</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mod-card">
+                <div class="mod-head grad-3">
+                    <div class="mod-num">მოდული 3</div>
+                    <h3>გუნდის მართვა და პრაქტიკა</h3>
+                </div>
+                <div class="mod-body">
+                    <p>რას ისწავლი:</p>
+                    <ul>
+                        <li>გუნდის სტრუქტურა და როლები</li>
+                        <li>გუნდის მოტივაცია და KPI-ზე დაფუძნებული მართვა</li>
+                        <li>პრაქტიკული შემაჯამებელი შეხვედრა</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+    <div class="container">
+        <h2 class="section-title">რატომ ეს კურსი?</h2>
+        <p class="section-sub">არა მხოლოდ თეორია, არამედ სრული მხარდაჭერა შენი ზრდისთვის</p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">🎥</div>
+                <h3>ცოცხალი შეხვედრები</h3>
+                <p>ონლაინ ლექციები რეალურ დროში ინტერაქციული ფორმატით</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">📝</div>
+                <h3>პრაქტიკული დავალებები</h3>
+                <p>თეორიის გამოყენება რეალურ სიტუაციებში</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💬</div>
+                <h3>უკუკავშირი</h3>
+                <p>პერსონალური ფიდბექი ტრენერისგან</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🤝</div>
+                <h3>ნეთვორქინგი</h3>
+                <p>კავშირი სხვა პროფესიონალებთან</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">📊</div>
+                <h3>რეალური ქეისები</h3>
+                <p>საქართველოს ბაზრისთვის ადაპტირებული მაგალითები</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🎓</div>
+                <h3>სერთიფიკატი</h3>
+                <p>კურსის წარმატებით დასრულების შემდეგ</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="cta" id="register">
+    <div class="container">
+        <div class="cta-inner">
+            <div class="cta-left">
+                <h2>მზად ხარ გახდე გაყიდვების პროფესიონალი?</h2>
+                <ul class="cta-perks">
+                    <li><span class="check">✓</span> უფასო კონსულტაცია კურსის შესახებ</li>
+                    <li><span class="check">✓</span> სპეციალური ფასი ადრეული რეგისტრაციისთვის</li>
+                    <li><span class="check">✓</span> გადახდის მოქნილი პირობები</li>
+                </ul>
+            </div>
+            <div class="cta-form">
+                <form id="reg-form">
+                    <div class="form-group">
+                        <label>სახელი და გვარი</label>
+                        <input type="text" name="name" placeholder="შენი სახელი და გვარი" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ელ-ფოსტა</label>
+                        <input type="email" name="email" placeholder="example@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ტელეფონი</label>
+                        <input type="tel" name="phone" placeholder="+995 5XX XXX XXX" required>
+                    </div>
+                    <button type="submit" class="form-submit">მინდა დავრეგისტრირდე</button>
+                    <div class="form-note">🔒 შენი მონაცემები დაცულია</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-top">
+            <div>
+                <img src="skillset.png" alt="SkillSet Academy" style="height:48px;object-fit:contain;background:white;padding:6px 12px;border-radius:8px;display:block;margin-bottom:6px;">
+                <div class="footer-tag">პროფესიული ზრდის აკადემია</div>
+            </div>
+            <div class="footer-contacts">
+                <div class="footer-link">✉️ SkillSetGeo@Gmail.com</div>
+                <div class="footer-link">📞 +995 599 123 456</div>
+                <div class="footer-link">📍 თბილისი, საქართველო</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 SkillSet Academy. ყველა უფლება დაცულია.
+        </div>
+    </div>
+</footer>
+
+<script>
+  // ჩასვი შენი Google Apps Script URL ქვემოთ
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyULVX233cbsbGJ-TCc8rqrbN6rhHmb8UY6kAPdmd9lLHrTm1O7XDPE8EXXfutaHI3Z/exec';
+
+  document.getElementById('reg-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = this.querySelector('.form-submit');
+    btn.textContent = 'იგზავნება...';
+    btn.disabled = true;
+
+    var params = new URLSearchParams({
+      name:  this.name.value,
+      email: this.email.value,
+      phone: this.phone.value
+    });
+
+    fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
+      .finally(function() {
+        window.location.href = 'thank-you.html';
+      });
+  });
+</script>
+</body>
+</html>

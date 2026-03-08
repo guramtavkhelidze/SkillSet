@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:id-preview--b1d53a68-efc3-4366-bfa8-bf0dd0d1c56a.lovable.app)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(py:*)"
+    ]
+  }
+}
