@@ -786,11 +786,9 @@
       })
     }).catch(function() {});
 
-    // Google Sheets
-    fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
-      .finally(function() {
-        window.location.href = 'thank-you.html';
-      });
+    // Google Sheets (background, არ ელოდება პასუხს)
+    fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params, keepalive: true });
+    window.location.href = 'thank-you.html';
   });
 </script>
 </body>
