@@ -6,6 +6,20 @@
     <title>გაყიდვების ტრენინგი | SkillSet Academy</title>
     <link rel="icon" type="image/png" href="skillset.png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1345600840707171');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1345600840707171&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -729,8 +743,12 @@
 </footer>
 
 <script>
-  // ჩასვი შენი Google Apps Script URL ქვემოთ
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyULVX233cbsbGJ-TCc8rqrbN6rhHmb8UY6kAPdmd9lLHrTm1O7XDPE8EXXfutaHI3Z/exec';
+
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
 
   document.getElementById('reg-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -738,12 +756,37 @@
     btn.textContent = 'იგზავნება...';
     btn.disabled = true;
 
-    var params = new URLSearchParams({
-      name:  this.name.value,
-      email: this.email.value,
-      phone: this.phone.value
-    });
+    var formEmail = this.email.value;
+    var formPhone = this.phone.value;
+    var formName  = this.name.value;
 
+    var params = new URLSearchParams({ name: formName, email: formEmail, phone: formPhone });
+
+    // Meta Pixel Lead event
+    var eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'Lead', {}, { eventID: eventId });
+    }
+
+    // Meta Conversions API (server-side)
+    fetch('/api/event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event_name: 'Lead',
+        event_time: Math.floor(Date.now() / 1000),
+        event_id: eventId,
+        event_source_url: window.location.href,
+        user_data: {
+          em: formEmail,
+          ph: formPhone,
+          fbp: getCookie('_fbp'),
+          fbc: getCookie('_fbc'),
+        }
+      })
+    }).catch(function() {});
+
+    // Google Sheets
     fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
       .finally(function() {
         window.location.href = 'thank-you.html';
